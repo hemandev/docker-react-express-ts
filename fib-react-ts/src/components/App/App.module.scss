@@ -1,0 +1,27 @@
+.App {
+    text-align: center;
+}
+
+.AppHeader {
+    background-color: #282c34;
+    height: 4rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.AppH2 {
+    margin-right: auto;
+}
+
+.AppNav {
+    display: flex;
+    text-decoration: none;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
