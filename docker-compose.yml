@@ -20,13 +20,13 @@ services:
   api:
     build:
       dockerfile: Dockerfile.dev
-      context: ./express-ts-fib
+      context: ./fib-express-ts
     depends_on:
     - postgres
     - redis  
     volumes: 
       - /app/node_modules
-      - ./express-ts-fib:/app
+      - ./fib-express-ts:/app
     environment: 
       - REDIS_HOST=redis
       - REDIS_PORT=6379      
@@ -47,10 +47,10 @@ services:
   worker:
     build:
       dockerfile: Dockerfile.dev
-      context: ./fib-worker
+      context: ./fib-worker-ts
     environment:
     - REDIS_HOST=redis
     - REDIS_PORT=6379  
     volumes: 
       - /app/node_modules
-      - ./fib-worker:/app     
+      - ./fib-worker-ts:/app     

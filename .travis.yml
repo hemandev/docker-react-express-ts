@@ -1,0 +1,14 @@
+language: generic
+
+services: 
+  - docker
+
+before_install:
+  - docker build -t hemanditwiz/fib-react-ts -f ./fib-react-ts/Dockerfile.dev .
+  - docker build -t hemanditwiz/fib-worker-ts -f ./fib-worker-ts/Dockerfile.dev .
+  - docker build -t hemanditwiz/fib-express-ts -f ./fib-express-ts/Dockerfile.dev .  
+
+script:
+  - docker run -e CI=true hemanditwiz/fib-react-ts npm test
+  - docker run -e CI=true hemanditwiz/fib-express-ts npm test
+  - docker run -e CI=true hemanditwiz/fib-worker-ts npm test  
