@@ -4,11 +4,16 @@ services:
   - docker
 
 before_install:
-  - docker build -t hemanditwiz/fib-react-ts -f ./fib-react-ts/Dockerfile.dev .
-  - docker build -t hemanditwiz/fib-worker-ts -f ./fib-worker-ts/Dockerfile.dev .
-  - docker build -t hemanditwiz/fib-express-ts -f ./fib-express-ts/Dockerfile.dev .  
+  - docker build -t hemanditwiz/fib-react-ts-dev -f ./fib-react-ts/Dockerfile.dev ./fib-react-ts
+  - docker build -t hemanditwiz/fib-worker-ts-dev -f ./fib-worker-ts/Dockerfile.dev  ./fib-worker-ts
+  - docker build -t hemanditwiz/fib-express-ts-dev -f ./fib-express-ts/Dockerfile.dev ./fib-express-ts  
 
 script:
-  - docker run -e CI=true hemanditwiz/fib-react-ts npm test
-  - docker run -e CI=true hemanditwiz/fib-express-ts npm test
-  - docker run -e CI=true hemanditwiz/fib-worker-ts npm test  
+  - docker run -e CI=true hemanditwiz/fib-react-ts-dev npm test
+  - docker run -e CI=true hemanditwiz/fib-express-ts-dev npm test
+  - docker run -e CI=true hemanditwiz/fib-worker-ts-dev npm test  
+
+after_success:
+  - docker build -t hemanditwiz/fib-react-ts ./fib-react-ts
+  - docker build -t hemanditwiz/fib-express-ts ./fib-express-ts
+  - docker build -t hemanditwiz/fib-worker-ts ./fib-worker-ts
