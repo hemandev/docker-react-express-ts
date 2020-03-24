@@ -17,3 +17,8 @@ after_success:
   - docker build -t hemanditwiz/fib-react-ts ./fib-react-ts
   - docker build -t hemanditwiz/fib-express-ts ./fib-express-ts
   - docker build -t hemanditwiz/fib-worker-ts ./fib-worker-ts
+  # Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push hemanditwiz/fib-react-ts
+  - docker push hemanditwiz/fib-express-ts
+  - docker push hemanditwiz/fib-worker-ts
